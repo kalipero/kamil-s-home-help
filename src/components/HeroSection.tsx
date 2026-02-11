@@ -1,63 +1,85 @@
-import { Phone, ArrowDown, Wrench, WashingMachine, Paintbrush, Droplets, Zap, TreePine } from "lucide-react";
+import { useState } from "react";
+import { Phone, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
-const quickServices = [
-  { icon: Wrench, label: "Opravy" },
-  { icon: WashingMachine, label: "Instalace" },
-  { icon: Paintbrush, label: "Renovace" },
-  { icon: Droplets, label: "Instalatér" },
-  { icon: Zap, label: "Elektrikář" },
-  { icon: TreePine, label: "Zahrada" },
-];
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { useToast } from "@/hooks/use-toast";
 
 const HeroSection = () => {
+  const { toast } = useToast();
+  const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!form.name.trim() || !form.email.trim() || !form.message.trim()) {
+      toast({ title: "Vyplňte prosím všechna povinná pole.", variant: "destructive" });
+      return;
+    }
+    toast({ title: "Zpráva odeslána!", description: "Děkuji, ozvu se vám co nejdříve." });
+    setForm({ name: "", email: "", phone: "", message: "" });
+  };
+
   return (
-    <section id="domu" className="py-20 md:py-32">
-      <div className="container mx-auto px-4">
-        <div className="mx-auto max-w-3xl text-center">
-          {/* Placeholder photo */}
-          <div className="mx-auto mb-8 flex h-32 w-32 items-center justify-center rounded-full bg-accent">
-            <Wrench className="h-12 w-12 text-primary" />
+    <section id="domu" className="relative bg-primary py-20 md:py-28 lg:py-36">
+      {/* Overlay for depth */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/90 to-primary" />
+
+      <div className="container relative z-10 mx-auto px-4">
+        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+          {/* Left — headline & CTA */}
+          <div className="text-primary-foreground">
+            <h1 className="mb-6 text-3xl font-bold leading-tight tracking-tight sm:text-4xl md:text-5xl lg:text-[3.25rem]">
+              Potřebujete rychlou opravu nebo montáž? Zavolejte spolehlivého hodinového manžela!
+            </h1>
+            <p className="mb-8 max-w-lg text-base leading-relaxed text-primary-foreground/80 md:text-lg">
+              Potřebujete opravit, smontovat nebo vylepšit něco ve svém domě či bytě? Jsem zkušený hodinový manžel, který vám pomůže s drobnými opravami, montáží nábytku, zednickými pracemi, malováním, zahradními pracemi a mnohem více. Pracuji spolehlivě, rychle a za férové ceny.
+            </p>
+            <a
+              href="tel:+420777111222"
+              className="inline-flex items-center gap-3 text-lg font-semibold text-primary-foreground transition-opacity hover:opacity-80 md:text-xl"
+            >
+              <Phone className="h-6 w-6" />
+              Zavolejte: +420 777 111 222
+            </a>
           </div>
 
-          <h1 className="mb-4 text-4xl font-bold tracking-tight text-foreground md:text-5xl lg:text-6xl">
-            Kamil Vavřička
-          </h1>
-          <p className="mb-2 text-xl font-medium text-primary md:text-2xl">
-            Hodinový manžel
-          </p>
-          <p className="mx-auto mb-8 max-w-xl text-lg text-muted-foreground">
-            Spolehlivé řemeslné služby pro váš domov. Od drobných oprav po
-            komplexní údržbu — postarám se o vše, co potřebujete.
-          </p>
-
-          <div className="mb-12 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <Button size="lg" asChild>
-              <a href="tel:+420777111222">
-                <Phone className="mr-2 h-5 w-5" />
-                Zavolat
-              </a>
-            </Button>
-            <Button size="lg" variant="outline" asChild>
-              <a href="#kontakt">
-                <ArrowDown className="mr-2 h-5 w-5" />
-                Kontaktovat
-              </a>
-            </Button>
-          </div>
-
-          {/* Quick service icons */}
-          <div className="flex flex-wrap items-center justify-center gap-6">
-            {quickServices.map((s) => (
-              <div key={s.label} className="flex flex-col items-center gap-1.5">
-                <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-accent">
-                  <s.icon className="h-5 w-5 text-primary" />
-                </div>
-                <span className="text-xs font-medium text-muted-foreground">
-                  {s.label}
-                </span>
-              </div>
-            ))}
+          {/* Right — contact form card */}
+          <div className="rounded-xl bg-card p-6 shadow-xl sm:p-8">
+            <h2 className="mb-1 text-xl font-bold text-card-foreground">
+              Zanechte kontakt
+            </h2>
+            <p className="mb-6 text-sm text-muted-foreground">
+              Vyplňte formulář a my se vám ozveme co nejdříve!
+            </p>
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <Input
+                placeholder="Jméno"
+                value={form.name}
+                onChange={(e) => setForm({ ...form, name: e.target.value })}
+              />
+              <Input
+                type="email"
+                placeholder="Váš Email"
+                value={form.email}
+                onChange={(e) => setForm({ ...form, email: e.target.value })}
+              />
+              <Input
+                type="tel"
+                placeholder="Vaše telefonní číslo"
+                value={form.phone}
+                onChange={(e) => setForm({ ...form, phone: e.target.value })}
+              />
+              <Textarea
+                placeholder="Vaše zpráva"
+                rows={4}
+                value={form.message}
+                onChange={(e) => setForm({ ...form, message: e.target.value })}
+              />
+              <Button type="submit" size="lg">
+                <Send className="mr-2 h-4 w-4" />
+                Zavolejte mi
+              </Button>
+            </form>
           </div>
         </div>
       </div>
