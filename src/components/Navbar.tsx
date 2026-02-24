@@ -4,8 +4,8 @@ import { Button } from "@/components/ui/button";
 
 const navLinks = [
   { label: "Domů", href: "#domu" },
+  { label: "O mně", href: "#o-mne" },
   { label: "Služby", href: "#sluzby" },
-  { label: "Ceník", href: "#cenik" },
   { label: "Kontakt", href: "#kontakt" },
 ];
 

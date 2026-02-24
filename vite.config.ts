@@ -12,7 +12,6 @@ export default defineConfig(({ mode }) => ({
       overlay: false,
     },
   },
-  base: '/kamil-s-home-help/',
   plugins: [react(), mode === "development" && componentTagger()].filter(Boolean),
   resolve: {
     alias: {
