@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Menu, X, Phone } from "lucide-react";
+import { Menu, X, Phone, Wrench } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const navLinks = [
@@ -15,8 +15,14 @@ const Navbar = () => {
   return (
     <nav className="sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
-        <a href="#domu" className="text-lg font-bold text-foreground">
-          Hodinový manžel Alex
+        <a href="#domu" className="flex items-center gap-2 group">
+          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary text-primary-foreground transition-transform group-hover:rotate-12">
+            <Wrench className="h-5 w-5" />
+          </div>
+          <div className="leading-tight">
+            <span className="block text-base font-bold text-foreground tracking-tight">Hodinový manžel</span>
+            <span className="block text-xs font-semibold text-primary">Alex</span>
+          </div>
         </a>
 
         {/* Desktop */}
