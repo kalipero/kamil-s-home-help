@@ -6,7 +6,7 @@ const Footer = () => {
       <div className="container mx-auto px-4">
         <div className="flex flex-col items-center gap-6 text-center md:flex-row md:justify-between md:text-left">
           <div>
-            <p className="font-bold text-foreground">Kamil Vavřička</p>
+            <p className="font-bold text-foreground">Alexandr Zhuravljev</p>
             <p className="text-sm text-muted-foreground">Hodinový manžel</p>
           </div>
 
@@ -33,7 +33,7 @@ const Footer = () => {
         </div>
 
         <div className="mt-8 text-center text-xs text-muted-foreground">
-          © {new Date().getFullYear()} Kamil Vavřička. Všechna práva vyhrazena.
+          © {new Date().getFullYear()} Alexandr Zhuravljev. Všechna práva vyhrazena.
         </div>
       </div>
     </footer>

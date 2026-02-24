@@ -17,7 +17,7 @@ const AboutSection = () => {
             O mně
           </h2>
           <p className="mb-6 text-center text-lg leading-relaxed text-muted-foreground">
-            Jsem Kamil a nabízím kompletní řemeslné služby pro domácnosti i
+            Jsem Alexandr a nabízím kompletní řemeslné služby pro domácnosti i
             firmy v okolí Hanušovic. Ať už potřebujete opravit kapající kohoutek,
             pověsit poličku nebo provést drobnou renovaci — rád vám pomohu.
           </p>
